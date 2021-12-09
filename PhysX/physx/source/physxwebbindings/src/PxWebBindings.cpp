@@ -1468,7 +1468,13 @@ EMSCRIPTEN_BINDINGS(physx)
   class_<PxMeshScale>("PxMeshScale")
       .constructor<const PxVec3 &, const PxQuat &>()
       .function("setScale", optional_override([](PxMeshScale &ms, PxVec3 &scale) { ms.scale = scale; }))
-      .function("setRotation", optional_override([](PxMeshScale &ms, PxQuat &rot) { ms.rotation = rot; }));
+      .function("setRotation", optional_override([](PxMeshScale &ms, PxQuat &rot) { ms.rotation = rot; }))
+      .function("getScale", optional_override([](PxMeshScale &ms) {
+                  return ms.scale;
+                }), allow_raw_pointers())
+      .function("getRotation", optional_override([](PxMeshScale &ms) {
+                  return ms.rotation;
+                }), allow_raw_pointers());
 
   class_<PxConvexMeshGeometryFlags>("PxConvexMeshGeometryFlags")
       .constructor<int>()
