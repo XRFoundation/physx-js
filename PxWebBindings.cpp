@@ -1391,7 +1391,10 @@ EMSCRIPTEN_BINDINGS(physx)
             }), allow_raw_pointers());
 
   class_<PxTriangleMeshGeometry, base<PxGeometry>>("PxTriangleMeshGeometry")
-      .constructor<>()
+      .constructor<>(select_overload<PxTriangleMeshGeometry()>
+        ([]() {
+        return PxTriangleMeshGeometry();
+      }))
       .constructor<PxTriangleMesh *, const PxMeshScale &, PxMeshGeometryFlags>()
       .function("setScale", optional_override([](PxTriangleMeshGeometry &geo, PxMeshScale &scale) {
                   geo.scale.scale = scale.scale;
