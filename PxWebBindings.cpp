@@ -1138,11 +1138,16 @@ EMSCRIPTEN_BINDINGS(physx)
       .function("setActorFlag", &PxActor::setActorFlag)
       .function("setActorFlags", &PxActor::setActorFlags)
       .function("getActorFlags", &PxActor::getActorFlags)
+      .function("getType", &PxActor::getType)
       .function("release", &PxActor::release);
 
   class_<PxActorFlags>("PxActorFlags")
       .constructor<int>()
       .function("isSet", &PxActorFlags::isSet);
+
+  enum_<PxActorType::Enum>("PxActorType")
+      .value("eRIGID_STATIC", PxActorType::Enum::eRIGID_STATIC)
+      .value("eRIGID_DYNAMIC", PxActorType::Enum::eRIGID_DYNAMIC);
 
   enum_<PxActorFlag::Enum>("PxActorFlag")
       .value("eVISUALIZATION", PxActorFlag::Enum::eVISUALIZATION)
